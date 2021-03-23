@@ -30,7 +30,7 @@ export const CallProvider = ({ children }) => {
   const createRoom = async (roomName) => {
     if (roomName) return roomName;
     const response = await fetch(
-      "https://partyline.daily.co/.netlify/functions/room",
+      "https://laughing-keller-f9ded6.netlify.app/.netlify/functions/room",
       {
         method: "POST",
       }
@@ -45,7 +45,7 @@ export const CallProvider = ({ children }) => {
       setError("Eep! We could not create a token");
     }
     const response = await fetch(
-      "https://partyline.daily.co/.netlify/functions/token",
+      "https://laughing-keller-f9ded6.netlify.app/.netlify/functions/token",
       {
         method: "POST",
         body: JSON.stringify({ properties: { room_name: roomName } }),
@@ -91,7 +91,7 @@ export const CallProvider = ({ children }) => {
     });
 
     const options = {
-      url: `https://devrel.daily.co/${roomInfo?.name}`,
+      url: `https://zeemee-team.daily.co/${roomInfo?.name}`,
       userName,
     };
     if (roomInfo?.token) {
