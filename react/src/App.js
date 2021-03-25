@@ -3,6 +3,7 @@ import InCall from "./components/InCall";
 import PreJoinRoom from "./components/PreJoinRoom";
 import theme from "./theme";
 import logo from "./icons/logo.svg";
+import zlogo from "./icons/z-logo-no-text.svg";
 import { SmallText } from "./components/shared/SmallText";
 import { CallProvider, INCALL, PREJOIN, useCallState } from "./CallProvider";
 
@@ -17,10 +18,11 @@ const AppContent = () => {
       <Wrapper>
         <Header>
           <HeaderTop>
-            <Title>Party line</Title>
-            <Logo src={logo} className="App-logo" alt="logo" />
+            <Logo src={zlogo} className="App-logo" alt="logo" />
+            <Title>ZeeMee/Daily Party Line Demo</Title>
+            <Logo src={logo} className="App-logo" alt="zlogo" />
           </HeaderTop>
-          <SmallText>An audio API demo from Daily</SmallText>
+          <SmallText>An audio API demo from ZeeMee/Daily</SmallText>
         </Header>
         {view === PREJOIN && <PreJoinRoom />}
         {view === INCALL && <InCall />}
@@ -31,6 +33,14 @@ const AppContent = () => {
           rel="noopener noreferrer"
         >
           Learn more about this demo
+        </Link>
+        <Link
+          center={view === INCALL}
+          href="https://zeemee.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn more about ZeeMee
         </Link>
       </Wrapper>
     </AppContainer>

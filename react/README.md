@@ -12,9 +12,12 @@ To run locally:
 - Run the following
 
 ```
+cd react
 npm i
 npm run start
 ```
+
+Should open in [http://localhost:3000/](http://localhost:3000/)
 
 ## Testing
 

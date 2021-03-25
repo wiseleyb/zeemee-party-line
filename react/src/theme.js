@@ -20,8 +20,9 @@ const theme = {
     redDark: "#bb0c0c",
     redLight: "#fddddd",
     white: "#ffffff",
-    turquoise: "#1bebb9",
-    teal: "#14997a",
+    //turquoise: "#1bebb9",
+    turquoise: "#ff6b01", // zeemee-orange
+    teal: "#14997a"
   },
   fontSize: {
     small: "11px",
