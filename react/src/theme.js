@@ -9,7 +9,8 @@ const theme = {
     green: "#72cc18",
     greenDark: "#62a60f",
     greenLight: "#eefae0",
-    grey: "#c8d1dc",
+    // grey: "#c8d1dc",
+    grey: "#ff6b01", // zeemee-orange
     greyDark: "#6b7785",
     greyLight: "#e6eaef",
     greyLightest: "#f7f9fa",
