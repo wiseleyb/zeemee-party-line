@@ -13,11 +13,12 @@ To run locally:
 
 ```
 cd react
+export PORT=8000
 npm i
 npm run start
 ```
 
-Should open in [http://localhost:3000/](http://localhost:3000/)
+Should open in [http://localhost:8000/](http://localhost:8000/)
 
 ## Testing
 

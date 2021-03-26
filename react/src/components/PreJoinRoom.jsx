@@ -10,13 +10,46 @@ const PreJoinRoom = () => {
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
   const roomNameRef = useRef(null);
+  const userImgUrlRef = useRef(null);
+
   const [roomName, setRoomName] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
+  const getUserInfo = async () => {
+    if (submitting) return;
+    console.log('getUserInfo');
+    const url = window.location;
+    const urlObject = new URL(url);
+    const uuid = urlObject.searchParams.get('uuid');
+    const joinCode = urlObject.searchParams.get('joinCode');
+    const env = urlObject.searchParams.get('env');
+
+    let baseUrl = 'https://www.zeemee.com';
+    switch(env) {
+    case 'development':
+      baseUrl = 'http://zeemee-dev.com:3000';
+      break;
+    case 'staging':
+      baseUrl = 'https://www.zaptack.com';
+      break;
+    }
+
+    const apiUrl =
+      `${baseUrl}/api/poja/users/audio_chat?uuid=${uuid}`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    firstNameRef.current.value = data['firstName'];
+    lastNameRef.current.value = data['lastName'];
+    roomNameRef.current.value = joinCode;
+    userImgUrlRef.current.value = data['profileImgUrl']
+  };
+
   useEffect(() => {
+    console.log('useEffect');
+    getUserInfo();
     if (error) {
       setSubmitting(false);
-    }
+    };
   }, [error]);
 
   const handleRoomChange = (e) => {
@@ -61,6 +94,12 @@ const PreJoinRoom = () => {
     <Container>
       <Title>Getting started</Title>
       <Form onSubmit={submitForm}>
+        <Input
+          ref={userImgUrlRef}
+          type="hidden"
+          id="pimg"
+          name="pimg"
+        />
         <Label htmlFor="fname">First name</Label>
         <Input
           ref={firstNameRef}
@@ -70,7 +109,12 @@ const PreJoinRoom = () => {
           required
         />
         <Label htmlFor="lname">Last name</Label>
-        <Input ref={lastNameRef} type="text" id="lname" name="lname" />
+        <Input
+          ref={lastNameRef}
+          type="text"
+          id="lname"
+          name="lname"
+        />
         <Label htmlFor="room">Join code</Label>
         <Input
           ref={roomNameRef}

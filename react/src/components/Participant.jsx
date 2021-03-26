@@ -175,6 +175,8 @@ const Participant = ({ participant, local, modCount }) => {
   ]);
 
   useEffect(() => {
+    console.log('Participant.jsx:useEffect');
+    console.log(participant);
     if (!participant?.audioTrack || !audioRef.current) return;
     // sanity check to make sure this is an audio track
     if (
