@@ -20,28 +20,32 @@ const PreJoinRoom = () => {
     console.log('getUserInfo');
     const url = window.location;
     const urlObject = new URL(url);
-    const uuid = urlObject.searchParams.get('uuid');
     const joinCode = urlObject.searchParams.get('joinCode');
-    const env = urlObject.searchParams.get('env');
+    const uuid = urlObject.searchParams.get('uuid');
 
-    let baseUrl = 'https://www.zeemee.com';
-    switch(env) {
-    case 'development':
-      baseUrl = 'http://zeemee-dev.com:3000';
-      break;
-    case 'staging':
-      baseUrl = 'https://www.zaptack.com';
-      break;
-    }
-
-    const apiUrl =
-      `${baseUrl}/api/poja/users/audio_chat?uuid=${uuid}`;
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    firstNameRef.current.value = data['firstName'];
-    lastNameRef.current.value = data['lastName'];
     roomNameRef.current.value = joinCode;
-    userImgUrlRef.current.value = data['profileImgUrl']
+
+    if (uuid !== null) {
+      const env = urlObject.searchParams.get('env');
+
+      let baseUrl = 'https://www.zeemee.com';
+      switch(env) {
+      case 'development':
+        baseUrl = 'http://zeemee-dev.com:3000';
+        break;
+      case 'staging':
+        baseUrl = 'https://www.zaptack.com';
+        break;
+      }
+
+      const apiUrl =
+        `${baseUrl}/api/poja/users/audio_chat?uuid=${uuid}`;
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      firstNameRef.current.value = data['firstName'];
+      lastNameRef.current.value = data['lastName'];
+      userImgUrlRef.current.value = data['profileImgUrl']
+    }
   };
 
   useEffect(() => {
