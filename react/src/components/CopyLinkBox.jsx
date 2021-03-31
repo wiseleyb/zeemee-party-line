@@ -12,20 +12,7 @@ const CopyLinkBox = ({ room }) => {
           Copy and share join code with others to invite them. Code:{" "}
           <Bold>{room?.name}</Bold>
         </SubHeader>
-    {/*
         <CopyButton
-          onClick={() => {
-            navigator.clipboard.writeText(room?.name);
-            setLinkCopied(true);
-            setTimeout(() => setLinkCopied(false), 5000);
-          }}
-        >
-          <CopyButtonText>
-            {linkCopied ? "Copied!" : `Copy join code`}
-          </CopyButtonText>
-        </CopyButton>
-    */}
-        <UrlCopyButton
           onClick={() => {
             navigator.clipboard.writeText(window.location.origin +
                                           '?joinCode=' +
@@ -34,10 +21,10 @@ const CopyLinkBox = ({ room }) => {
             setTimeout(() => setLinkCopied(false), 5000);
           }}
         >
-          <UrlCopyButtonText>
+          <CopyButtonText>
             {linkCopied ? "Copied!" : `Copy url with join code`}
-          </UrlCopyButtonText>
-        </UrlCopyButton>
+          </CopyButtonText>
+        </CopyButton>
       </InviteContainer>
     </Container>
   );
