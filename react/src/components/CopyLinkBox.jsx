@@ -12,6 +12,7 @@ const CopyLinkBox = ({ room }) => {
           Copy and share join code with others to invite them. Code:{" "}
           <Bold>{room?.name}</Bold>
         </SubHeader>
+    {/*
         <CopyButton
           onClick={() => {
             navigator.clipboard.writeText(room?.name);
@@ -23,6 +24,20 @@ const CopyLinkBox = ({ room }) => {
             {linkCopied ? "Copied!" : `Copy join code`}
           </CopyButtonText>
         </CopyButton>
+    */}
+        <UrlCopyButton
+          onClick={() => {
+            navigator.clipboard.writeText(window.location.origin +
+                                          '?joinCode=' +
+                                          room?.name);
+            setLinkCopied(true);
+            setTimeout(() => setLinkCopied(false), 5000);
+          }}
+        >
+          <UrlCopyButtonText>
+            {linkCopied ? "Copied!" : `Copy url with join code`}
+          </UrlCopyButtonText>
+        </UrlCopyButton>
       </InviteContainer>
     </Container>
   );
@@ -80,5 +95,28 @@ const CopyButtonText = styled.span`
   font-weight: 600;
   text-align: center;
 `;
+const UrlCopyButton = styled.button`
+  border: ${theme.colors.cyanLight} 1px solid;
+  background-color: ${theme.colors.turquoise};
+  padding: 8px 12px;
+  border-radius: 8px;
+  width: 122px;
+  cursor: pointer;
+
+  &:active {
+    background-color: ${theme.colors.cyan};
+  }
+  &:focus {
+    outline: none;
+    border: ${theme.colors.cyan} 1px solid;
+    border-radius: 8px;
+  }
+`;
+const UrlCopyButtonText = styled.span`
+  font-size: ${theme.fontSize.base};
+  font-weight: 600;
+  text-align: center;
+`;
+
 
 export default CopyLinkBox;
